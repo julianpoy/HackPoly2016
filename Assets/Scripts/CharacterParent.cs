@@ -28,6 +28,9 @@ public class CharacterParent : MonoBehaviour {
 	//our camera Script
 	protected ActionCamera actionCamera;
 
+	//Our last animation direction for idling
+	protected int lastDir;
+
 	// Use this for initialization
 	protected virtual void Start () {
 
@@ -41,6 +44,7 @@ public class CharacterParent : MonoBehaviour {
 		//Set our default values
 		//maxHealth = 25; Max Health set by inspector
 		moveDec = 1;
+		lastDir = 0;
 
 		//Set our health
 		curHealth = maxHealth;
@@ -100,8 +104,10 @@ public class CharacterParent : MonoBehaviour {
 
 			if (h > 0) {
 				animator.SetInteger ("Direction", 1);
+				lastDir = 1;
 			} else {
 				animator.SetInteger ("Direction", -1);
+				lastDir = -1;
 			}
 
 			//Create a vector to where we are moving
@@ -139,7 +145,7 @@ public class CharacterParent : MonoBehaviour {
 			charBody.MovePosition (charBody.position);
 
 			//tell the animator we are no longer moving
-			//animator.SetInteger ("Direction", 0);
+			animator.SetInteger ("Direction", 0);
 		}
 	}
 
@@ -198,5 +204,11 @@ public class CharacterParent : MonoBehaviour {
 	public int getDirection() {
 		return animator.GetInteger("Direction");
 	}
+
+	//Function to return our last non idle direction
+	public int getLastDirection() {
+		return lastDir;
+	}
+
 
 }

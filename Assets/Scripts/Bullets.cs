@@ -41,7 +41,8 @@ public class Bullets : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<Player>();
 
 		//Get our Player current Direction
-		if (player.getDirection () > 0) {
+		if (player.getDirection () > 0 ||
+			(player.getDirection() == 0 && player.getLastDirection() > 0 )) {
 			animator.SetInteger ("Direction", 1);
 			playerRight = true;
 		} else {

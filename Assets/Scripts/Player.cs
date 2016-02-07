@@ -77,7 +77,6 @@ public class Player : CharacterParent
 			//Attacks with our player (Check for a level up here as well), only attack if not jumping
 			if (Input.GetKey (KeyCode.Backspace) &&
 				!jumping &&
-				animator.GetInteger("Direction") != 0 &&
 				!gameManager.getGameStatus()) {
 				//Now since we are allowing holding space to punch we gotta count for it
 				if(!shooting && holdAttack % holdDuration == 0)
@@ -117,18 +116,21 @@ public class Player : CharacterParent
 
 			//Check what direction we are moving, and slight move that way when attacking
 			int dir = animator.GetInteger("Direction");
+			
 			float moveAmount = .005f;
 
 		//Our spawn offset
 		float spawnOffset = 0.0975f;
-			if(dir == 1)
+			if(dir == 1 ||
+			(dir == 0 && lastDir > 0))
 			{
 				gameObject.transform.position = new Vector3(gameObject.transform.position.x + moveAmount, gameObject.transform.position.y, 0);
 			}
-			else
+		else if(dir == -1 ||
+			(dir == 0 && lastDir < 0))
 			{
 				gameObject.transform.position = new Vector3(gameObject.transform.position.x - moveAmount, gameObject.transform.position.y, 0);
-			spawnOffset = spawnOffset * -1.0f;
+				spawnOffset = spawnOffset * -1.0f;
 			}
 
 
@@ -146,6 +148,7 @@ public class Player : CharacterParent
 
 		//Set our booleans
 		jumping = true;
+		animator.SetBool ("Jump", true);
 		jumps++;
 
 		//Force some camera Lerp
@@ -164,7 +167,10 @@ public class Player : CharacterParent
 				charBody.AddForce (new Vector2 (0, rate));
 
 				//Allow Jumping again a bit early
-				if(i > 65f) jumping = false;
+				if(i > 65f) {
+					animator.SetBool ("Jump", false);
+					jumping = false;
+				}
 
 				i+=3f;
 
