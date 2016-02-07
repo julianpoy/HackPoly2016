@@ -24,6 +24,9 @@ public class Player : CharacterParent
 	//How long do they have to hold before attacking
 	public int holdDuration;
 
+	//Our Buller Game Object
+	public GameObject bullet;
+
 	// Use this for initialization
 	protected override void Start ()
 	{
@@ -77,18 +80,17 @@ public class Player : CharacterParent
 			base.Move(Input.GetAxis("Horizontal"), shooting);
 
 			//Attacks with our player (Check for a level up here as well), only attack if not jumping
-			if (Input.GetKey (KeyCode.RightShift) &&
+			if (Input.GetKey (KeyCode.Backspace) &&
 				!jumping &&
-				!animator.GetCurrentAnimatorStateInfo(0).IsName("Right Jump") &&
-				!animator.GetCurrentAnimatorStateInfo(0).IsName("Left Jump")) {
+				animator.GetInteger("Direction") != 0) {
 				//Now since we are allowing holding space to punch we gotta count for it
 				if(!shooting && holdAttack % holdDuration == 0)
 				{
 					//Set hold punch to zero
 					holdAttack = 0;
 					//Attacking working great
-					StopCoroutine("Attack");
-					StartCoroutine ("Attack");
+					StopCoroutine("Shoot");
+					StartCoroutine ("Shoot");
 				}
 
 				//Increase hold punch
@@ -97,10 +99,22 @@ public class Player : CharacterParent
 
 
 
-			//If they stop holding space, set holdpunch back to zero
+			//Shoot!
 			if (Input.GetKeyUp (KeyCode.RightShift)) {
-				//Set hold punch to zero
-				holdAttack = 0;
+
+				if (!shooting && holdAttack % holdDuration == 0) {
+
+					//Set hold punch to zero
+					holdAttack = 0;
+
+					//Shoot
+					StopCoroutine("Shoot");
+					StartCoroutine ("Shoot");
+
+				}
+
+				//increare hold attack
+				holdAttack++;
 			}
 
 			//Jumping INput, cant jump if attacking
@@ -144,9 +158,39 @@ public class Player : CharacterParent
 	}
 
 	//Function for shooting
-	//IEnumerator Shoot() {
+	IEnumerator Shoot() {
 
-	//}
+		//Set shooting to true
+		shooting = true;
+
+		//Play shooting sound
+
+
+			//Check what direction we are moving, and slight move that way when attacking
+			int dir = animator.GetInteger("Direction");
+			float moveAmount = .005f;
+			
+		//Our spawn offset
+		float spawnOffset = 0.0775f;
+			if(dir == 1)
+			{
+				gameObject.transform.position = new Vector3(gameObject.transform.position.x + moveAmount, gameObject.transform.position.y, 0);
+			}
+			else
+			{
+				gameObject.transform.position = new Vector3(gameObject.transform.position.x - moveAmount, gameObject.transform.position.y, 0);
+			spawnOffset = spawnOffset * -1.0f;
+			}
+
+
+			//Instantiate the bullet
+			Instantiate(bullet, new Vector3(gameObject.transform.position.x + spawnOffset, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity);
+
+				//Let the frame finish
+			yield return null;
+			//set attacking to false
+			shooting = false;
+	}
 
 	//Function for jumping
 	IEnumerator Jump() {

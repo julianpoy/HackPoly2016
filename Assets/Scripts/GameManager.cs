@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale = 1;
 
 			//Get our player
-			user = GameObject.Find ("Person").GetComponent<Player>();
+			user = GameObject.Find ("Player").GetComponent<Player>();
 
 			//Get our Hud
 			hud = GameObject.FindGameObjectWithTag ("PlayerHUD").GetComponent<UnityEngine.UI.Text> ();

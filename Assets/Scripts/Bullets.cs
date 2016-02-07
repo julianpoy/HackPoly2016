@@ -14,35 +14,66 @@ public class Bullets : MonoBehaviour {
 	protected Animator animator;   //Used to store a reference to the Player's animator component.
 
 	//our camera Script
-	public ActionCamera actionCamera;
+	private ActionCamera actionCamera;
 
 	//Our shooting sound
 	private AudioSource shoot;
 
+	//Our target to go away from
+	private Player player;
+	bool playerRight;
+
 	// Use this for initialization
 	void Start () {
 
+		//Get a component reference to the Character's animator component
+		animator = GetComponent<Animator>();
+		render = GetComponent<SpriteRenderer>();
+
+		//Get the rigid body on the prefab
+		bullBody = GetComponent<Rigidbody2D>();
+
 		//Set our bullet strength and speed
 		strength = 2;
-		speed = 100;
+		speed = 80;
+
+		//Go after our player!
+		player = GameObject.Find("Player").GetComponent<Player>();
+
+		//Get our Player current Direction
+		if (player.getDirection () > 0) {
+			animator.SetInteger ("Direction", 1);
+			playerRight = true;
+		} else {
+			playerRight = false;
+			animator.SetInteger ("Direction", -1);
+		}
 
 		//Play our shooting sound
-		shoot = GameObject.Find ("Dodge").GetComponent<AudioSource> ();
+		//shoot = GameObject.Find ("Dodge").GetComponent<AudioSource> ();
 
 		//Get our camera script
 		actionCamera = Camera.main.GetComponent<ActionCamera>();
-
-		//Bullet Spawns, add a huge amount of force
-		float xForce = speed * 20000;
-		//Little bit of randomness
-		float yForce = speed * 200;
-
-		//Add the force to our object
-		bullBody.AddForce (new Vector2 (yForce, xForce));
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		//Bullet Spawns, add a huge amount of force
+		float xForce = 0;
+		if (playerRight)
+			xForce = speed;
+		else
+			xForce = speed * -1.0f;
+
+		//Little bit of randomness
+		float yForce = speed * Random.insideUnitCircle.y;
+
+		//Add some rotation to bullet
+		gameObject.transform.Rotate(new Vector3(0, 0, yForce / 20));
+
+		//Add the force to our object
+		bullBody.AddForce (new Vector2 (xForce, yForce / 1.75f));
 	}
 
 
@@ -81,7 +112,7 @@ public class Bullets : MonoBehaviour {
 		bullBody.velocity = Vector3.zero;
 
 		//wait a second
-		yield return new WaitForSeconds(.25f);
+		yield return new WaitForSeconds(.5f);
 
 		//delete the object
 		Destroy(gameObject);

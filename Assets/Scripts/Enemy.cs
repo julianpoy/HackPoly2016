@@ -57,7 +57,7 @@ public class Enemy : CharacterParent
 		attackFrames = totalFrames;
 
 		//Go after our player!
-		player = GameObject.Find("Person").GetComponent<Player>();
+		player = GameObject.Find("Player").GetComponent<Player>();
 
 	}
 
