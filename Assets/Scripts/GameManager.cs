@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 	private AudioSource bgFight;
 
 	//Array pf things to say once you die
-	String[] epitaph = {"I ain't got time to bleed..."};
+	String[] epitaph = {"Hasta Squirell Vista..."};
 
 	// Use this for initialization
 	void Start () {
@@ -59,26 +59,29 @@ public class GameManager : MonoBehaviour {
 			hud = GameObject.FindGameObjectWithTag ("PlayerHUD").GetComponent<UnityEngine.UI.Text> ();
 
 			//get our bg music
-			bgFight = GameObject.Find ("GameSong").GetComponent<AudioSource> ();
+			//bgFight = GameObject.Find ("GameSong").GetComponent<AudioSource> ();
 
 			//Defeated enemies is one for score calculation at start
-			defeatedEnemies = 1;
+			defeatedEnemies = 0;
 			//Total spawned enemies is one because we check for it to spawn enemies, and zero would get it stuck
-			totalSpawnedEnemies = 1;
+			totalSpawnedEnemies = 0;
 
 			//Set score to zero
 			score = 0;
 
+			//Show our score and things
+			hud.text = ("Enemies Defeated: " + defeatedEnemies + "\nHighest Score: " + score);
+
 			//Spawn an enemies
-			invokeEnemies ();
+			//invokeEnemies ();
 		}
 
 		// Update is called once per frame
 		void Update () {
 
 			//Check if we need to restart the game
-			if(Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.Return)) {
-				Application.LoadLevel ("Game");
+			if(Input.GetKey(KeyCode.Return)) {
+				Application.LoadLevel ("GameScene");
 			}
 
 			//Spawn enemies every frame
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour {
 
 						//Show our game over
 						hud.text = ("GAMEOVER!!!" + "\n" + epitaph[epitaphIndex] + "\nEnemies Defeated:" + defeatedEnemies
-												+ "\nHighest Score:" + score);
+												+ "\nScore:" + score +"\nPress Enter to restart...");
 
 						//stop the music! if it is playing
 						if(bgFight.isPlaying)
@@ -126,6 +129,8 @@ public class GameManager : MonoBehaviour {
 						//Slow down the game Time
 						Time.timeScale = 0.25f;
 					}
+
+
 		}
 
 
@@ -154,111 +159,12 @@ public class GameManager : MonoBehaviour {
 
 			//Since enemy is gone add to defeated enemies
 			++defeatedEnemies;
-		}
 
-		//fucntion to get our total number of spawned enemies
-		public int getTotalSpawned()
-		{
-				// never return zero, only 1 or the actual amount
-				if (totalSpawnedEnemies > 0) {
-					return totalSpawnedEnemies;
-				} else {
-					return 1;
-				}
-		}
-		//Functiont o do our invoke repeating functions
-		public void invokeEnemies ()
-		{
-			//Cancel all of our invokes
-			CancelInvoke();
+			//Increase our score
+			score = (int) Math.Floor(defeatedEnemies + (1000 * Math.Abs(UnityEngine.Random.insideUnitCircle.x)));
 
-			//Now invoke our enemies
-			float superRate = spawnRate * defeatedEnemies / 100;
-			InvokeRepeating("spawnEnemies", 0 , superRate);
-		}
-
-
-		//Function to spawn enemies repeatedly
-		private void spawnEnemies()
-		{
-			//Only do this if there aren't a max number of enemies
-			if (numEnemies < maxEnemies) {
-
-
-				//We can spawn an enemy anywhere outside of the camera
-				//Get ouyr player's position
-				user = GameObject.Find ("Person").GetComponent<Player> ();
-				Vector2 userPos = user.transform.position;
-
-				//Now find an x and y coordinate that wouldnt be out of bounds the level, attaching this script to it's own object
-				//It's position is X: 52, Y: -20 X is left lower, right higher, Y is top higher, bottom lower
-
-
-				//Find an X to spawn
-				float enemyX = 0;
-
-				//get a random direction
-				float eDir = -1;
-				//Our enemy spawn offset
-				float sOffX = 1.4f;
-				float boundsX = .4f;
-				//Get a random number to slightly influence our off set
-				float slight = UnityEngine.Random.Range(0.0f, 0.7f);
-				//loop until we get a direction that works
-				while(eDir == -1)
-				{
-					//Get our direction 0,1,2,3
-					eDir = Mathf.Floor(UnityEngine.Random.Range(0, 2.0f));
-
-					//Check what direction we got
-					if(eDir == 0)
-					{
-						if(userPos.x > boundsX)
-						{
-							eDir = -1;
-						}
-						else
-						{
-							enemyX = userPos.x + sOffX;
-						}
-					}
-					else if(eDir == 1)
-					{
-						if(userPos.x < -boundsX)
-						{
-							eDir = -1;
-						}
-						else
-						{
-							enemyX = userPos.x - sOffX;
-						}
-					}
-					else
-					{
-						//Keep looping
-						eDir = -1;
-					}
-				}
-
-
-				//Now create a vector with our x and y
-				Vector2 spawnPos = new Vector2 (enemyX, 0);
-
-				//Now re-create our spawn rates
-				//Get our enemy index
-				int enemyIndex = (int)Mathf.Floor (UnityEngine.Random.Range (0, enemies.Length));
-
-				//Try catch for index out of range
-				try {
-					//create a copy of our gameobject
-					Instantiate (enemies [enemyIndex], spawnPos, Quaternion.identity);
-				} catch (IndexOutOfRangeException ex) {
-					//Print our exception to the console
-					print (ex);
-				}
-
-			}
-
+			//Show our score and things
+			hud.text = ("Enemies Defeated: " + defeatedEnemies + "\nHighest Score: " + score);
 		}
 
 }

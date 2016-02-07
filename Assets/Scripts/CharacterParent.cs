@@ -14,6 +14,7 @@ public class CharacterParent : MonoBehaviour {
 	protected int curHealth;
 	//Player health regen rate
 	public int healthRegenRate;
+	private bool canRegen;
 
 	//Game jucin', slow when attacking
 	private int moveDec;
@@ -43,6 +44,7 @@ public class CharacterParent : MonoBehaviour {
 
 		//Set our health
 		curHealth = maxHealth;
+		canRegen = true;
 
 		//Default looking idle
 		animator.SetInteger("Direction", 0);
@@ -56,6 +58,22 @@ public class CharacterParent : MonoBehaviour {
 
 	// Update is called once per frame
 	protected virtual void Update () {
+
+		//Check if we can Regen
+		if(canRegen && !gameManager.getGameStatus()) {
+
+			//increase health by 7 points
+			if (curHealth + 7 > maxHealth) {
+				setHealth(maxHealth);
+			} else {
+				setHealth(curHealth + 7);
+			}
+
+			//Stop regen
+			StopCoroutine("noRegen");
+			StartCoroutine("noRegen");
+
+		}
 	}
 
 
@@ -121,7 +139,7 @@ public class CharacterParent : MonoBehaviour {
 			charBody.MovePosition (charBody.position);
 
 			//tell the animator we are no longer moving
-			animator.SetInteger ("Direction", 0);
+			//animator.SetInteger ("Direction", 0);
 		}
 	}
 
@@ -132,6 +150,15 @@ public class CharacterParent : MonoBehaviour {
 		moveDec = 5;
 		yield return new WaitForSeconds(.5f);
 		moveDec = 1;
+	}
+
+	//Function to notHealth Regen for a certain amount of time
+	IEnumerator noRegen()
+	{
+		//Boolean for health
+		canRegen = false;
+		yield return new WaitForSeconds(0.45f);
+		canRegen = true;
 	}
 
 	//Get/set funtion for health
@@ -148,6 +175,10 @@ public class CharacterParent : MonoBehaviour {
 		{
 			//Set the character damage indicator
 			editDamage();
+
+			//Stop regen
+			StopCoroutine("noRegen");
+			StartCoroutine("noRegen");
 		}
 	}
 
@@ -155,8 +186,10 @@ public class CharacterParent : MonoBehaviour {
 	public void editDamage()
 	{
 		//Create our red color indicator
-		float healthPercent = maxHealth / curHealth;
-		Color damage = new Color (1, healthPercent, healthPercent);
+		float curFloat = curHealth * 1.0f;
+		float maxFloat = maxHealth * 1.0f;
+		float healthPercent = curFloat / maxFloat;
+		Color damage = new Color (1.0f, healthPercent, healthPercent);
 		render.material.color = damage;
 
 	}
