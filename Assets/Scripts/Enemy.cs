@@ -104,17 +104,30 @@ public class Enemy : CharacterParent
 		//Get our angle stuff
 		float h = gameObject.transform.position.x - player.transform.position.x;
 
+		//How fast we move
+		float moveAmount = 200.0f;
+
 		//Need to make a vector here to move towards
+		Vector2 towards;
+
+		if (h < 0) {
+
+			towards = new Vector2 (player.transform.position.x + moveAmount, 0);
+			animator.SetInteger ("Direction", 1);
+
+		} else {
+
+			towards = new Vector2 (player.transform.position.x - moveAmount, 0);
+			animator.SetInteger("Direction", -1);
+		}
 
 
 		//Get our speed according to our current level
 		//Using enemy skill
-		float superSpeed = eMoveSpeed / 8;
+		float superSpeed = eMoveSpeed;
 
 		//movement vector
-		Vector2 move;
-			//Get our movement vector
-			move = Vector2.MoveTowards(transform.position, player.transform.position, superSpeed * Time.deltaTime);
+		Vector2 move = Vector2.MoveTowards(transform.position, towards, superSpeed * Time.deltaTime);
 			
 		//Get the position we want to move to, and go to it using move towards
 		charBody.MovePosition(move);

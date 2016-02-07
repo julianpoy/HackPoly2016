@@ -35,7 +35,7 @@ public class Bullets : MonoBehaviour {
 
 		//Set our bullet strength and speed
 		strength = 2;
-		speed = 80;
+		speed = 40;
 
 		//Go after our player!
 		player = GameObject.Find("Player").GetComponent<Player>();
@@ -70,7 +70,7 @@ public class Bullets : MonoBehaviour {
 		float yForce = speed * Random.insideUnitCircle.y;
 
 		//Add some rotation to bullet
-		gameObject.transform.Rotate(new Vector3(0, 0, yForce / 20));
+		gameObject.transform.Rotate(new Vector3(0, 0, yForce / 22));
 
 		//Add the force to our object
 		bullBody.AddForce (new Vector2 (xForce, yForce / 1.75f));
@@ -80,6 +80,10 @@ public class Bullets : MonoBehaviour {
 	//Catch Collisions 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+
+		//Set forces to zero
+		bullBody.velocity = Vector3.zero;
+		bullBody.angularVelocity = 0;
 
 		//Set the trigger for the bullet to pop
 		actionCamera.impactPause();
@@ -95,7 +99,7 @@ public class Bullets : MonoBehaviour {
 			Enemy e = (Enemy)collision.gameObject.GetComponent ("Enemy");
 
 			//Find our damage, and set it
-			int damage = strength * (speed / 100);
+			int damage = strength * (speed / 20);
 			int newHealth = e.getHealth() - damage;
 
 			e.setHealth (newHealth);
@@ -105,11 +109,9 @@ public class Bullets : MonoBehaviour {
 		StartCoroutine("BulletHit");
 	}
 
+
 	//Function to stop the bullet and delete it
 	public IEnumerator BulletHit() {
-
-		//Set forces to zero
-		bullBody.velocity = Vector3.zero;
 
 		//wait a second
 		yield return new WaitForSeconds(.5f);

@@ -59,18 +59,21 @@ public class GameManager : MonoBehaviour {
 			hud = GameObject.FindGameObjectWithTag ("PlayerHUD").GetComponent<UnityEngine.UI.Text> ();
 
 			//get our bg music
-			bgFight = GameObject.Find ("GameSong").GetComponent<AudioSource> ();
+			//bgFight = GameObject.Find ("GameSong").GetComponent<AudioSource> ();
 
 			//Defeated enemies is one for score calculation at start
-			defeatedEnemies = 1;
+			defeatedEnemies = 0;
 			//Total spawned enemies is one because we check for it to spawn enemies, and zero would get it stuck
-			totalSpawnedEnemies = 1;
+			totalSpawnedEnemies = 0;
 
 			//Set score to zero
 			score = 0;
 
+			//Show our score and things
+			hud.text = ("Enemies Defeated: " + defeatedEnemies + "\nHighest Score: " + score);
+
 			//Spawn an enemies
-			invokeEnemies ();
+			//invokeEnemies ();
 		}
 
 		// Update is called once per frame
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour {
 
 						//Show our game over
 						hud.text = ("GAMEOVER!!!" + "\n" + epitaph[epitaphIndex] + "\nEnemies Defeated:" + defeatedEnemies
-												+ "\nHighest Score:" + score);
+												+ "\nScore:" + score);
 
 						//stop the music! if it is playing
 						if(bgFight.isPlaying)
@@ -154,6 +157,12 @@ public class GameManager : MonoBehaviour {
 
 			//Since enemy is gone add to defeated enemies
 			++defeatedEnemies;
+
+			//Increase our score
+		score = (int) Math.Floor(defeatedEnemies + (1000 * Math.Abs(UnityEngine.Random.insideUnitCircle.x)));
+
+			//Show our score and things
+			hud.text = ("Enemies Defeated: " + defeatedEnemies + "\nHighest Score: " + score);
 		}
 
 		//fucntion to get our total number of spawned enemies

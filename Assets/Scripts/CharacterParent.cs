@@ -121,7 +121,7 @@ public class CharacterParent : MonoBehaviour {
 			charBody.MovePosition (charBody.position);
 
 			//tell the animator we are no longer moving
-			animator.SetInteger ("Direction", 0);
+			//animator.SetInteger ("Direction", 0);
 		}
 	}
 
@@ -147,7 +147,7 @@ public class CharacterParent : MonoBehaviour {
 		if (curHealth > 0)
 		{
 			//Set the character damage indicator
-			editDamage();
+			//editDamage();
 		}
 	}
 
@@ -155,8 +155,8 @@ public class CharacterParent : MonoBehaviour {
 	public void editDamage()
 	{
 		//Create our red color indicator
-		float healthPercent = maxHealth / curHealth;
-		Color damage = new Color (1, healthPercent, healthPercent);
+		float healthPercent = (curHealth / maxHealth);
+		Color damage = new Color (1.0f, healthPercent, healthPercent);
 		render.material.color = damage;
 
 	}
