@@ -79,17 +79,14 @@ public class Player : CharacterParent
 			//r.enabled = false;
 			//No longer turning invisible, just looping death animation
 			//play our death animation
-			if (!animator.GetBool ("Death")) {
 				animator.SetTrigger ("Death");
-				animator.SetBool ("Death", true);
 				//play the death sound
 				//if (!death.isPlaying) {
 					//death.Play ();
 				//}
-			}
 
 			//Set our gameover text
-			gameManager.setGameStatus (false);
+			gameManager.setGameStatus (true);
 
 			//set health to 0
 			curHealth = 0;

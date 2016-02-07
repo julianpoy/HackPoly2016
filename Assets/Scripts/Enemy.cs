@@ -25,9 +25,6 @@ public class Enemy : CharacterParent
 	//Our Enenemy Damage Multiplier
 	private int eDamage;
 
-	//Enemy speed
-	private float eMoveSpeed;
-
 
 
 	// Use this for initialization
@@ -46,7 +43,7 @@ public class Enemy : CharacterParent
 
 		//Set the enemy damage
 		eDamage = 10;
-		eMoveSpeed = .34f;
+
 
 		//set dead to false;
 		dead = false;
@@ -124,7 +121,7 @@ public class Enemy : CharacterParent
 
 		//Get our speed according to our current level
 		//Using enemy skill
-		float superSpeed = eMoveSpeed;
+		float superSpeed = moveSpeed * 0.05f;
 
 		//movement vector
 		Vector2 move = Vector2.MoveTowards(transform.position, towards, superSpeed * Time.deltaTime);
@@ -192,7 +189,7 @@ public class Enemy : CharacterParent
 		{
 
 			//Check if it is the player
-			if (collision.gameObject.tag == "Player") {
+			if (collision.gameObject.tag == "PlayerChar") {
 				//Set player collide to false
 				playerCollide = false;
 			}
