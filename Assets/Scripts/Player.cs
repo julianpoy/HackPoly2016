@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : CharacterParent
 {
 
-	//Our sounds 
+	//Our sounds
 	private AudioSource shoot;
 	private AudioSource jump;
 	private AudioSource hurt;
@@ -17,6 +18,10 @@ public class Player : CharacterParent
 	bool jumping;
 	public int jumpForce;
 
+	bool applyFallPhys;
+	float fallPhysCounter;
+	int physAlt;
+
 	//Counter for holding space to punch
 	private int holdAttack;
 	//How long do they have to hold before attacking
@@ -28,7 +33,7 @@ public class Player : CharacterParent
 
 		//Call our superclass start
 		base.Start();
-		
+
 		//Get our sounds
 		shoot = GameObject.Find ("Dodge").GetComponent<AudioSource> ();
 		jump = GameObject.Find ("LevelUp").GetComponent<AudioSource> ();
@@ -40,14 +45,29 @@ public class Player : CharacterParent
 		jumps = 0;
 		jumping = false;
 		holdAttack = 0;
+
+		applyFallPhys = false;
+		fallPhysCounter = 0;
+		physAlt = 0;
 	}
-	
+
 	// Update is called once per frame
 	protected override void Update ()
 	{
-
 		//Call our base update
 		base.Update ();
+
+		if(applyFallPhys && !jumping && physAlt % 8 == 0){
+
+			charBody.AddForce (new Vector2 (0, -getJumpPhys(fallPhysCounter)));
+
+			//Force some camera Lerp
+			actionCamera.forceLerp(0, 0.0065f);
+
+			fallPhysCounter += 0.3f;
+			if(physAlt == 8) physAlt = 0;
+			physAlt++;
+		}
 
 		//check if dead, allow movement if alive
 		if (curHealth <= 0) {
@@ -77,7 +97,7 @@ public class Player : CharacterParent
 			base.Move(Input.GetAxis("Horizontal"), shooting);
 
 			//Attacks with our player (Check for a level up here as well), only attack if not jumping
-			if (Input.GetKey (KeyCode.RightShift) && 
+			if (Input.GetKey (KeyCode.RightShift) &&
 				!jumping &&
 				!animator.GetCurrentAnimatorStateInfo(0).IsName("Right Jump") &&
 				!animator.GetCurrentAnimatorStateInfo(0).IsName("Left Jump")) {
@@ -104,9 +124,9 @@ public class Player : CharacterParent
 			}
 
 			//Jumping INput, cant jump if attacking
-			if(Input.GetKeyDown(KeyCode.Space) && !shooting 
+			if(Input.GetKeyDown(KeyCode.Space) && !shooting
 				&& !jumping && jumps < 2) {
-					
+
 					//Jump Coroutine
 					StopCoroutine ("Jump");
 					StartCoroutine ("Jump");
@@ -145,21 +165,22 @@ public class Player : CharacterParent
 
 	//Function for shooting
 	//IEnumerator Shoot() {
-		
+
 	//}
 
 	//Function for jumping
 	IEnumerator Jump() {
-			
+
 			//Set our booleans
 			jumping = true;
 			jumps++;
 
 			//Get our jump Rate
-		float rate = jumpForce + 0.1f;
 
-		while (rate > jumpForce * -1 ||
-			(jumps > 0)) {
+		float i = 0f;
+		float rate = getJumpPhys(i);
+
+		while (rate > 0) {
 
 			//Add jump force to our character
 			charBody.AddForce (new Vector2 (0, rate));
@@ -168,15 +189,51 @@ public class Player : CharacterParent
 			actionCamera.forceLerp(0, -0.0065f);
 
 			//Sub tract from the jump force
-			rate = rate - 9.87f;
+			rate = getJumpPhys(i);
 
 			//Allow Jumping again a bit early
 			if(rate < 2) jumping = false;
 
+			i+=.3f;
+
 			//Wait some frames
 				//Wait a frame
-				yield return 0;	
+				yield return 0;
 		}
+
+		i = 0;
+		rate = getFallPhys(i);
+		Debug.Log(rate);
+		while(rate >= 0){
+			//Add jump force to our character
+			charBody.AddForce (new Vector2 (0, -rate));
+
+			//Force some camera Lerp
+			actionCamera.forceLerp(0, 0.0065f);
+
+			//Sub tract from the jump force
+			rate = getJumpPhys(i);
+			Debug.Log(rate);
+
+			i+=.3f;
+
+			//Wait some frames
+			//Wait a frame
+			yield return 0;
+
+		}
+	}
+
+	public float getJumpPhys(float x){
+		float startPos = (x - 1.6f);
+		float dropPos = (x - 2.3f);
+		float dropAmount = (0.6f * (float)Math.Sin(x - 2.3f));
+		float startY = 3.2f;
+		return 70*(-(float)Math.Pow(startPos, 2f) + startY - (float)Math.Abs(dropAmount));
+	}
+
+	public float getFallPhys(float x){
+		return 0.01f * (float)Math.Abs(Math.Pow(x, 2.3f));
 	}
 
 	//Function for if dodging
@@ -188,7 +245,7 @@ public class Player : CharacterParent
 	//Function to check if we can jump again for collisions
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-
+		applyFallPhys = false;
 		//Check if it is the player
 		if (collision.gameObject.tag == "JumpWall") {
 			//Set Jumps to zero
@@ -196,6 +253,14 @@ public class Player : CharacterParent
 
 			actionCamera.impactPause ();
 		}
+	}
+
+	//Function to check if we can jump again for collisions
+	void OnCollisionExit2D(Collision2D collision)
+	{
+		applyFallPhys = true;
+		fallPhysCounter = 0.3f;
+		jumping = false;
 	}
 
 	//Function to check if we can jump again for collisions
@@ -209,4 +274,3 @@ public class Player : CharacterParent
 		}
 	}
 }
-
