@@ -50,6 +50,10 @@ public class Player : CharacterParent
 		//Call our base update
 		base.Update ();
 
+		//Add some accelerating gravity
+		Vector2 gravityVector = new Vector2(0.0f, -9.81f);
+		charBody.AddForce( new Vector2(gravityVector.x * Time.deltaTime, gravityVector.y * Time.deltaTime), ForceMode2D.Force);
+
 		//check if dead, allow movement if alive
 		if (curHealth <= 0) {
 			//make our player object invisible
@@ -116,7 +120,7 @@ public class Player : CharacterParent
 
 			//Check what direction we are moving, and slight move that way when attacking
 			int dir = animator.GetInteger("Direction");
-			
+
 			float moveAmount = .005f;
 
 		//Our spawn offset
@@ -177,26 +181,6 @@ public class Player : CharacterParent
 				//Wait some frames
 				//Wait a frame
 				yield return 0;
-		}
-
-		i = 0;
-		rate = getJumpPhys(i);
-		while(rate >= 0){
-			//Add jump force to our character
-			charBody.AddForce (new Vector2 (0, -rate));
-
-			//Force some camera Lerp
-			actionCamera.forceLerp(0, -0.00065f);
-
-			//Sub tract from the jump force
-			rate = getJumpPhys(i);
-
-			i+=.3f;
-
-			//Wait some frames
-			//Wait a frame
-			yield return 0;
-
 			}
 		}
 	}
@@ -214,20 +198,16 @@ public class Player : CharacterParent
 	//Function to check if we can jump again for collisions
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		//Set Jumps to zero
-		jumps = 0;
 		//Check if it is the player
 		if (collision.gameObject.tag == "JumpWall") {
-			charBody.gravityScale = 4;
+			//Turn Off Jumps
+			StopCoroutine ("Jump");
+			jumps = 0;
+			jumping = false;
+			animator.SetBool ("Jump", false);
 			actionCamera.impactPause();
 			actionCamera.startShake ();
 		}
-	}
-
-	//Function to check if we can jump again for collisions
-	void OnCollisionExit2D(Collision2D collision)
-	{
-		charBody.gravityScale = 7;
 	}
 
 	//Function to check if we can jump again for collisions

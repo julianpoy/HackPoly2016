@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 	private AudioSource bgFight;
 
 	//Array pf things to say once you die
-	String[] epitaph = {"Hasta Squirell Vista..."};
+	String[] epitaph = {"Awwee Nuts!"};
 
 	// Use this for initialization
 	void Start () {

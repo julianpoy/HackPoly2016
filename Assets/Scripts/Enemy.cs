@@ -44,13 +44,16 @@ public class Enemy : CharacterParent
 		//Set the enemy damage
 		eDamage = 10;
 
+		//Set our gravity
+		charBody.gravityScale = 3.5f;
+
 
 		//set dead to false;
 		dead = false;
 		playerCollide = false;
 
 		//Set our attack frames
-		totalFrames = 15;
+		totalFrames = 10;
 		attackFrames = totalFrames;
 
 		//Go after our player!
@@ -65,8 +68,12 @@ public class Enemy : CharacterParent
 
 		if(!gameManager.getGameStatus() && !dead && !playerCollide)
 		{
+			//Check how far we are
+			if(Vector3.Distance(gameObject.transform.position, player.transform.position) < 2) {
+
 				//Move our enemy
 				enemyMove ();
+			}
 		}
 
 		//Check if enemy is dead
@@ -102,7 +109,7 @@ public class Enemy : CharacterParent
 		float h = gameObject.transform.position.x - player.transform.position.x;
 
 		//How fast we move
-		float moveAmount = 200.0f;
+		float moveAmount = 300.0f;
 
 		//Need to make a vector here to move towards
 		Vector2 towards;
@@ -121,7 +128,7 @@ public class Enemy : CharacterParent
 
 		//Get our speed according to our current level
 		//Using enemy skill
-		float superSpeed = moveSpeed * 0.05f;
+		float superSpeed = moveSpeed * 0.075f;
 
 		//movement vector
 		Vector2 move = Vector2.MoveTowards(transform.position, towards, superSpeed * Time.deltaTime);

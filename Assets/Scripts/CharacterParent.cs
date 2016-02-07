@@ -44,7 +44,7 @@ public class CharacterParent : MonoBehaviour {
 		//Set our default values
 		//maxHealth = 25; Max Health set by inspector
 		moveDec = 1;
-		lastDir = 0;
+		lastDir = -1;
 
 		//Set our health
 		curHealth = maxHealth;
