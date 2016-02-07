@@ -65,7 +65,7 @@ public class Bullets : MonoBehaviour {
 
 			//Find our damage, and set it
 			int damage = strength * (speed / 100);
-			int newHealth = e.getHealth - damage;
+			int newHealth = e.getHealth() - damage;
 
 			e.setHealth (newHealth);
 		}
