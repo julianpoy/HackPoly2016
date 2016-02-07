@@ -18,9 +18,6 @@ public class ActionCamera : MonoBehaviour
 	//our postion
 	private Vector3 defaultPos;
 
-	//We are colliding
-	bool colliding;
-
 	//Our game manager
 	GameManager gameManager;
 
@@ -28,7 +25,6 @@ public class ActionCamera : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		colliding = false;
 		shaking = false;
 		defaultPos = new Vector3 (0, 0, -10);
 		impacting = false;
@@ -117,6 +113,7 @@ public class ActionCamera : MonoBehaviour
 	{
 		StartCoroutine("impactPause");
 	}
+
 	//Pause our game for some slight seconds
 	public IEnumerator impactPause()
 	{
@@ -127,6 +124,23 @@ public class ActionCamera : MonoBehaviour
 			yield return new WaitForSeconds(.002f);
 			Time.timeScale = 1;
 			impacting = false;
+		}
+	}
+
+	//Function to push our camera in a direction
+	public void forceLerp(float x, float y) {
+
+		float forceMax = 0.35f;
+
+		//Simply foce the camera in that direction
+		if(gameObject.transform.localPosition.x + x < defaultPos.x + forceMax &&
+			gameObject.transform.localPosition.x + x > defaultPos.x - forceMax) {
+			gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x + x, gameObject.transform.localPosition.y, defaultPos.z);
+		}
+
+		if (gameObject.transform.localPosition.y + y < defaultPos.y + forceMax &&
+			gameObject.transform.localPosition.y + y > defaultPos.y - forceMax) {
+			gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x , gameObject.transform.localPosition.y + y, defaultPos.z);
 		}
 	}
 }

@@ -12,8 +12,10 @@ public class Player : CharacterParent
 
 	//Boolean to check if attacking
 	bool shooting;
-	//Boolean to check if we are jumping
+	//Our Number of jumps we have done
+	int jumps;
 	bool jumping;
+	public int jumpForce;
 
 	//Counter for holding space to punch
 	private int holdAttack;
@@ -35,6 +37,7 @@ public class Player : CharacterParent
 
 		//Set our actions
 		shooting = false;
+		jumps = 0;
 		jumping = false;
 		holdAttack = 0;
 	}
@@ -100,13 +103,13 @@ public class Player : CharacterParent
 				holdAttack = 0;
 			}
 
-			//Jumping, cant jump if attacking
-			if(Input.GetKeyDown("space") && !shooting &&
-				!animator.GetCurrentAnimatorStateInfo(0).IsName("RightAttack") &&
-				!animator.GetCurrentAnimatorStateInfo(0).IsName("LeftAttack")) {
-				//Start the dodging coroutine
-				StopCoroutine("Jump");
-				StartCoroutine ("Jump");
+			//Jumping INput, cant jump if attacking
+			if(Input.GetKeyDown(KeyCode.Space) && !shooting 
+				&& !jumping && jumps < 2) {
+					
+					//Jump Coroutine
+					StopCoroutine ("Jump");
+					StartCoroutine ("Jump");
 			}
 
 			//Now check if we are attacking for health regen
@@ -145,10 +148,65 @@ public class Player : CharacterParent
 		
 	//}
 
+	//Function for jumping
+	IEnumerator Jump() {
+			
+			//Set our booleans
+			jumping = true;
+			jumps++;
+
+			//Get our jump Rate
+		float rate = jumpForce + 0.1f;
+
+		while (rate > jumpForce * -1 ||
+			(jumps > 0)) {
+
+			//Add jump force to our character
+			charBody.AddForce (new Vector2 (0, rate));
+
+			//Force some camera Lerp
+			actionCamera.forceLerp(0, -0.0065f);
+
+			//Sub tract from the jump force
+			rate = rate - 9.87f;
+
+			//Allow Jumping again a bit early
+			if(rate < 2) jumping = false;
+
+			//Wait some frames
+				//Wait a frame
+				yield return 0;	
+		}
+	}
+
 	//Function for if dodging
 	public bool isJumping()
 	{
 		return jumping;
+	}
+
+	//Function to check if we can jump again for collisions
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+
+		//Check if it is the player
+		if (collision.gameObject.tag == "JumpWall") {
+			//Set Jumps to zero
+			jumps = 0;
+
+			actionCamera.impactPause ();
+		}
+	}
+
+	//Function to check if we can jump again for collisions
+	void OnCollisionStay2D(Collision2D collision)
+	{
+
+		//Check if it is the player
+		if (collision.gameObject.tag == "JumpWall") {
+			//Set Jumps to zero
+			jumps = 0;
+		}
 	}
 }
 

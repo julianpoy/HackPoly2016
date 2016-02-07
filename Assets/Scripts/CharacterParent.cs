@@ -66,7 +66,8 @@ public class CharacterParent : MonoBehaviour {
 		//Get our input
 		float h = direction;
 
-		Debug.Log (h);
+		//Force some camera Lerp
+		actionCamera.forceLerp(h / 200, 0);
 
 		//Also check to make sure we stay that direction when not moving, so check that we are
 		if (h != 0) {
