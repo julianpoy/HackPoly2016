@@ -198,7 +198,7 @@ public class Player : CharacterParent
 	//Function to check if we can jump again for collisions
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		//Check if it is the player
+		//Check if it is tthe jumping wall
 		if (collision.gameObject.tag == "JumpWall") {
 			//Turn Off Jumps
 			StopCoroutine ("Jump");
@@ -207,6 +207,12 @@ public class Player : CharacterParent
 			animator.SetBool ("Jump", false);
 			actionCamera.impactPause();
 			actionCamera.startShake ();
+		}
+
+		//Check if it is spikes
+		if(collision.gameObject.tag == "SpikeWall") {
+			//Kill the players
+			setHealth(0);
 		}
 	}
 
@@ -218,6 +224,12 @@ public class Player : CharacterParent
 		if (collision.gameObject.tag == "JumpWall") {
 			//Set Jumps to zero
 			jumps = 0;
+		}
+
+		//Check if it is spikes
+		if(collision.gameObject.tag == "SpikeWall") {
+			//Kill the players
+			setHealth(0);
 		}
 	}
 }
