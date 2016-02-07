@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 			//Scale our camera accordingly
 			gameOver = false;
 
@@ -93,11 +93,11 @@ public class GameManager : MonoBehaviour {
 						//hud.text = ("Health: " + user.getHealth () + "\tScore: " + score);
 
 						//start the music! if it is not playing
-						//if(!bgFight.isPlaying)
-						//{
-							//bgFight.Play();
-							//bgFight.loop = true;
-						//}
+						// if(!bgFight.isPlaying)
+						// {
+						// 	bgFight.Play();
+						// 	bgFight.loop = true;
+						// }
 					}
 					else
 					{
