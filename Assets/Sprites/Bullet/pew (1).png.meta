@@ -1,0 +1,336 @@
+fileFormatVersion: 2
+guid: 185644cd093566d45a002485ddc529a6
+timeCreated: 1454841519
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: pew (1)_0
+    21300002: pew (1)_1
+    21300004: pew (1)_2
+    21300006: pew (1)_3
+    21300008: pew (1)_4
+    21300010: pew (1)_5
+    21300012: pew (1)_6
+    21300014: pew (1)_7
+    21300016: pew (1)_8
+    21300018: pew (1)_9
+    21300020: pew (1)_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: pew (1)_0
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 16
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_1
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 14
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_2
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 12
+        width: 36
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 33
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_4
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 0
+        width: 135
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: -21}
+        - {x: 34.5, y: -19}
+        - {x: 31.5, y: -18}
+        - {x: 29.5, y: -21}
+      - - {x: 56.5, y: -21}
+        - {x: 61.5, y: -21}
+        - {x: 61.5, y: -17}
+        - {x: 60.5, y: -14}
+        - {x: 57.5, y: -14}
+        - {x: 56.5, y: -16}
+      - - {x: 48.5, y: -19}
+        - {x: 51.5, y: -18}
+        - {x: 51.5, y: -15}
+        - {x: 48.5, y: -14}
+        - {x: 46.5, y: -16}
+      - - {x: 64.5, y: -16}
+        - {x: 66.5, y: -18}
+        - {x: 67.5, y: -18}
+        - {x: 67.5, y: -13}
+        - {x: 65.5, y: -13}
+      - - {x: 0.5, y: -13}
+        - {x: 5.5, y: -17}
+        - {x: 11.5, y: -17}
+        - {x: 11.5, y: -13}
+        - {x: 7.5, y: -2}
+        - {x: 3.5, y: -2}
+        - {x: 0.5, y: -8}
+      - - {x: -23.5, y: -15}
+        - {x: -20.5, y: -14}
+        - {x: -20.5, y: -11}
+        - {x: -23.5, y: -10}
+        - {x: -25.5, y: -12}
+      - - {x: -9.5, y: -14}
+        - {x: -6.5, y: -13}
+        - {x: -6.5, y: -10}
+        - {x: -9.5, y: -9}
+        - {x: -11.5, y: -11}
+      - - {x: -12.5, y: 9}
+        - {x: -13.5, y: 8}
+        - {x: -13.5, y: -2}
+        - {x: -7.5, y: -13}
+        - {x: 0.5, y: -13}
+        - {x: 3.5, y: -6}
+        - {x: 3.5, y: 1}
+        - {x: -4.5, y: 9}
+      - - {x: 4.5, y: -6}
+        - {x: 10.5, y: -13}
+        - {x: 22.5, y: -13}
+        - {x: 22.5, y: 6}
+        - {x: 17.5, y: 6}
+        - {x: 4.5, y: 5}
+      - - {x: -15.5, y: -12}
+        - {x: -12.5, y: -11}
+        - {x: -12.5, y: -8}
+        - {x: -15.5, y: -7}
+        - {x: -17.5, y: -9}
+      - - {x: 34.5, y: -12}
+        - {x: 37.5, y: -11}
+        - {x: 37.5, y: -8}
+        - {x: 34.5, y: -7}
+        - {x: 32.5, y: -9}
+      - - {x: -33.5, y: 2}
+        - {x: -35.5, y: 1}
+        - {x: -33.5, y: 2}
+        - {x: -30.5, y: 2}
+        - {x: -30.5, y: 14}
+        - {x: -34.5, y: 21}
+        - {x: -53.5, y: 21}
+        - {x: -54.5, y: 20}
+        - {x: -55.5, y: 21}
+        - {x: -67.5, y: 21}
+        - {x: -67.5, y: -7}
+        - {x: -62.5, y: -8}
+        - {x: -59.5, y: -7}
+        - {x: -58.5, y: -4}
+        - {x: -60.5, y: -2}
+        - {x: -57.5, y: -5}
+        - {x: -59.5, y: -7}
+        - {x: -60.5, y: -10}
+        - {x: -57.5, y: -11}
+        - {x: -34.5, y: -11}
+        - {x: -30.5, y: -3}
+        - {x: -30.5, y: 0}
+      - - {x: 61.5, y: -11}
+        - {x: 64.5, y: -10}
+        - {x: 64.5, y: -7}
+        - {x: 61.5, y: -6}
+        - {x: 59.5, y: -8}
+      - - {x: -21.5, y: -9}
+        - {x: -18.5, y: -8}
+        - {x: -18.5, y: -5}
+        - {x: -21.5, y: -4}
+        - {x: -23.5, y: -6}
+      - - {x: 43.5, y: -9}
+        - {x: 46.5, y: -8}
+        - {x: 46.5, y: -5}
+        - {x: 43.5, y: -4}
+        - {x: 41.5, y: -6}
+      - - {x: -16.5, y: 0}
+        - {x: -17.5, y: -2}
+        - {x: -17.5, y: -5}
+        - {x: -14.5, y: -7}
+        - {x: -10.5, y: -7}
+        - {x: -8.5, y: -6}
+        - {x: -8.5, y: -2}
+        - {x: -11.5, y: 0}
+      - - {x: 63.5, y: -4}
+        - {x: 65.5, y: -7}
+        - {x: 67.5, y: -6}
+        - {x: 67.5, y: -3}
+        - {x: 65.5, y: -2}
+      - - {x: -21.5, y: -2}
+        - {x: -18.5, y: -1}
+        - {x: -18.5, y: 2}
+        - {x: -21.5, y: 3}
+        - {x: -23.5, y: 1}
+      - - {x: 56.5, y: -2}
+        - {x: 59.5, y: -1}
+        - {x: 59.5, y: 2}
+        - {x: 56.5, y: 3}
+        - {x: 54.5, y: 1}
+      - - {x: -11.5, y: -1}
+        - {x: -8.5, y: 0}
+        - {x: -8.5, y: 3}
+        - {x: -11.5, y: 4}
+        - {x: -13.5, y: 2}
+      - - {x: -17.5, y: 2}
+        - {x: -14.5, y: 3}
+        - {x: -14.5, y: 6}
+        - {x: -17.5, y: 7}
+        - {x: -19.5, y: 5}
+      - - {x: 9.5, y: 3}
+        - {x: 12.5, y: 4}
+        - {x: 12.5, y: 7}
+        - {x: 9.5, y: 8}
+        - {x: 7.5, y: 6}
+      - - {x: -4.5, y: 12}
+        - {x: -4.5, y: 10}
+        - {x: -3.5, y: 6}
+        - {x: 2.5, y: 6}
+        - {x: 6.5, y: 7}
+        - {x: 6.5, y: 12}
+      - - {x: -32.5, y: 17}
+        - {x: -29.5, y: 18}
+        - {x: -29.5, y: 21}
+        - {x: -33.5, y: 21}
+        - {x: -34.5, y: 20}
+    - name: pew (1)_5
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 21
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_6
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 21
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_7
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 20
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_8
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 19
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_9
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 20
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pew (1)_10
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 19
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
