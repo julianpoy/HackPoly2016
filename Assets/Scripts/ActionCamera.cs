@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class ActionCamera : MonoBehaviour 
@@ -48,8 +49,8 @@ public class ActionCamera : MonoBehaviour
 			if(currentShake > 0)
 			{
 					
-				float xShake = Random.insideUnitCircle.x;
-				float yShake = Random.insideUnitCircle.y;
+				float xShake = UnityEngine.Random.insideUnitCircle.x;
+				float yShake = UnityEngine.Random.insideUnitCircle.y;
 
 				//If we still have some shake value, make the current camera position that much more amount
 				//Also need to lerp our screen shake, and because of this make sure the camera cant go out of a certain distnace

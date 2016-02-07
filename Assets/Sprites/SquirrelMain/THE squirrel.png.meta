@@ -1,0 +1,309 @@
+fileFormatVersion: 2
+guid: 3e17659a6259d7f4a984fb4091b449dd
+timeCreated: 1454850054
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: THE squirrel_0
+    21300002: THE squirrel_1
+    21300004: THE squirrel_2
+    21300006: THE squirrel_3
+    21300008: THE squirrel_4
+    21300010: THE squirrel_5
+    21300012: THE squirrel_6
+    21300014: THE squirrel_7
+    21300016: THE squirrel_8
+    21300018: THE squirrel_9
+    21300020: THE squirrel_10
+    21300022: THE squirrel_11
+    21300024: THE squirrel_12
+    21300026: THE squirrel_13
+    21300028: THE squirrel_14
+    21300030: THE squirrel_15
+    21300032: THE squirrel_16
+    21300034: THE squirrel_17
+    21300036: THE squirrel_18
+    21300038: THE squirrel_19
+    21300040: THE squirrel_20
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: THE squirrel_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 17
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 17
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_2
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 17
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 17
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_4
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 17
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_5
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 18
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_6
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 19
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_7
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 17
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_8
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 17
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_9
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 18
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_10
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 16
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_11
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 16
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_12
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 15
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_13
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 14
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_14
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 17
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_15
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 17
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_16
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 17
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_17
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 17
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_18
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 25
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_19
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 17
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: THE squirrel_20
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 17
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

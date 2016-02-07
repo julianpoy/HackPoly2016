@@ -25,9 +25,6 @@ public class Enemy : CharacterParent
 	//Our Enenemy Damage Multiplier
 	private int eDamage;
 
-	//Enemy speed
-	private float eMoveSpeed;
-
 
 
 	// Use this for initialization
@@ -36,9 +33,9 @@ public class Enemy : CharacterParent
 		base.Start ();
 
 		//Get our sounds
-		attack = GameObject.Find ("Punch").GetComponent<AudioSource> ();
-		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
-		death = GameObject.Find ("Death").GetComponent<AudioSource> ();
+		//attack = GameObject.Find ("Punch").GetComponent<AudioSource> ();
+		//hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
+		//death = GameObject.Find ("Death").GetComponent<AudioSource> ();
 
 		//Set our Health
 		maxHealth = maxHealth / 2;
@@ -46,7 +43,7 @@ public class Enemy : CharacterParent
 
 		//Set the enemy damage
 		eDamage = 10;
-		eMoveSpeed = .34f;
+
 
 		//set dead to false;
 		dead = false;
@@ -57,7 +54,7 @@ public class Enemy : CharacterParent
 		attackFrames = totalFrames;
 
 		//Go after our player!
-		player = GameObject.Find("Player").GetComponent<Player>();
+		player = GameObject.FindGameObjectWithTag("PlayerChar").GetComponent<Player>();
 
 	}
 
@@ -102,17 +99,32 @@ public class Enemy : CharacterParent
 	void enemyMove ()
 	{
 		//Get our angle stuff
-		float h = transform.position.x - player.transform.position.x;
+		float h = gameObject.transform.position.x - player.transform.position.x;
+
+		//How fast we move
+		float moveAmount = 200.0f;
+
+		//Need to make a vector here to move towards
+		Vector2 towards;
+
+		if (h < 0) {
+
+			towards = new Vector2 (player.transform.position.x + moveAmount, 0);
+			animator.SetInteger ("Direction", 1);
+
+		} else {
+
+			towards = new Vector2 (player.transform.position.x - moveAmount, 0);
+			animator.SetInteger("Direction", -1);
+		}
 
 
 		//Get our speed according to our current level
 		//Using enemy skill
-		float superSpeed = eMoveSpeed / 8;
+		float superSpeed = moveSpeed * 0.05f;
 
 		//movement vector
-		Vector2 move;
-			//Get our movement vector
-			move = Vector2.MoveTowards(transform.position, player.transform.position, superSpeed * Time.deltaTime);
+		Vector2 move = Vector2.MoveTowards(transform.position, towards, superSpeed * Time.deltaTime);
 			
 		//Get the position we want to move to, and go to it using move towards
 		charBody.MovePosition(move);
@@ -122,7 +134,7 @@ public class Enemy : CharacterParent
 		void OnCollisionStay2D(Collision2D collision)
 		{
 				//Check if it is the player
-				if (collision.gameObject.tag == "Player") {
+				if (collision.gameObject.tag == "PlayerChar") {
 				//Set player collide to true
 				playerCollide = true;
 
@@ -137,7 +149,7 @@ public class Enemy : CharacterParent
 				else {
 
 					//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
-					animator.SetTrigger ("Attack");
+					//animator.SetTrigger ("Attack");
 
 					//Only do damage if they are not dodging
 						//Get the player
@@ -154,7 +166,7 @@ public class Enemy : CharacterParent
 
 						//Play the sound of hurt, only if the game is still on
 						if (!gameManager.getGameStatus ()) {
-							hurt.Play ();
+							//hurt.Play ();
 						}
 
 						//Shake the screen
@@ -177,7 +189,7 @@ public class Enemy : CharacterParent
 		{
 
 			//Check if it is the player
-			if (collision.gameObject.tag == "Player") {
+			if (collision.gameObject.tag == "PlayerChar") {
 				//Set player collide to false
 				playerCollide = false;
 			}
