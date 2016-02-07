@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
 			//Scale our camera accordingly
 			gameOver = false;
 
@@ -83,21 +84,21 @@ public class GameManager : MonoBehaviour {
 			//Spawn enemies every frame
 			if (!gameOver) {
 
-				//Get the score for the player
-				//Going to calculate by enemies defeated, level, and minutes passed
-				score = (int) (defeatedEnemies * 100) + defeatedEnemies;
+					//Get the score for the player
+					//Going to calculate by enemies defeated, level, and minutes passed
+					score = (int) (defeatedEnemies * 100) + defeatedEnemies;
 
 
-					//Update our hud to player
-					hud.text = ("Health: " + user.getHealth () + "\tScore: " + score);
+						//Update our hud to player
+						//hud.text = ("Health: " + user.getHealth () + "\tScore: " + score);
 
-					//start the music! if it is not playing
-					if(!bgFight.isPlaying)
-					{
-						bgFight.Play();
-						bgFight.loop = true;
+						//start the music! if it is not playing
+						if(!bgFight.isPlaying)
+						{
+							bgFight.Play();
+							bgFight.loop = true;
+						}
 					}
-		}
 					else
 					{
 						//First get our epitaph index
