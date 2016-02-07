@@ -26,7 +26,7 @@ public class Enemy : CharacterParent
 	private int eDamage;
 
 	//Enemy speed
-	private int eMoveSpeed;
+	private float eMoveSpeed;
 
 
 
@@ -46,6 +46,7 @@ public class Enemy : CharacterParent
 
 		//Set the enemy damage
 		eDamage = 10;
+		eMoveSpeed = .34f;
 
 		//set dead to false;
 		dead = false;
