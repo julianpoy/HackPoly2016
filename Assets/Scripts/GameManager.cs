@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour {
 
 						//Show our game over
 						hud.text = ("GAMEOVER!!!" + "\n" + epitaph[epitaphIndex] + "\nEnemies Defeated:" + defeatedEnemies
-												+ "\nScore:" + score +"\nPress Enter to restart...");
+												+ "\nScore:" + score +"\nPress Start/Enter to restart...");
 
 						//stop the music! if it is playing
 						if(bgFight.isPlaying)
