@@ -5,9 +5,9 @@ public class Player : CharacterParent
 {
 
 	//Our sounds 
-	private AudioSource attack;
 	private AudioSource shoot;
 	private AudioSource jump;
+	private AudioSource hurt;
 	private AudioSource death;
 
 	//Boolean to check if attacking
@@ -28,9 +28,9 @@ public class Player : CharacterParent
 		base.Start();
 		
 		//Get our sounds
-		attack = GameObject.Find ("Punch").GetComponent<AudioSource> ();
 		shoot = GameObject.Find ("Dodge").GetComponent<AudioSource> ();
 		jump = GameObject.Find ("LevelUp").GetComponent<AudioSource> ();
+		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
 		death = GameObject.Find ("Death").GetComponent<AudioSource> ();
 
 		//Set our actions

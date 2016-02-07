@@ -24,9 +24,12 @@ public class CharacterParent : MonoBehaviour {
 	//Our game manager
 	public GameManager gameManager;
 
+	//our camera Script
+	public ActionCamera actionCamera;
+
 	// Use this for initialization
 	protected virtual void Start () {
-		
+
 		//Get a component reference to the Character's animator component
 		animator = GetComponent<Animator>();
 		render = GetComponent<SpriteRenderer>();
@@ -46,8 +49,11 @@ public class CharacterParent : MonoBehaviour {
 
 		//Get our gammaneger
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+		//Get our camera script
+		actionCamera = Camera.main.GetComponent<ActionCamera>();
 	}
-	
+
 	// Update is called once per frame
 	protected virtual void Update () {
 	}
@@ -68,9 +74,9 @@ public class CharacterParent : MonoBehaviour {
 			//animate to the direction we are going to move
 			//Find the greatest absolute value to get most promenint direction
 			/*
-			 * 		
+			 *
 			 * 0		1
-			 * 		
+			 *
 			 * */
 
 			if (h > 0) {
@@ -80,7 +86,7 @@ public class CharacterParent : MonoBehaviour {
 			}
 
 			//Create a vector to where we are moving
-			Vector2 movement = new Vector2 (h, 0); 
+			Vector2 movement = new Vector2 (h, 0);
 
 			//When attacking start a slow movemnt coroutine
 			if (!inAction) {
@@ -137,7 +143,7 @@ public class CharacterParent : MonoBehaviour {
 	public void setHealth(int newHealth)
 	{
 		curHealth = newHealth;
-		if (curHealth > 0) 
+		if (curHealth > 0)
 		{
 			//Set the character damage indicator
 			editDamage();
