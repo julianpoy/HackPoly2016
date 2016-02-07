@@ -38,9 +38,9 @@ public class Player : CharacterParent
 		base.Start();
 
 		//Get our sounds
-		jump = GameObject.Find ("LevelUp").GetComponent<AudioSource> ();
-		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
-		death = GameObject.Find ("Death").GetComponent<AudioSource> ();
+		//jump = GameObject.Find ("LevelUp").GetComponent<AudioSource> ();
+		//hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
+		//death = GameObject.Find ("Death").GetComponent<AudioSource> ();
 
 		//Set our actions
 		shooting = false;
@@ -246,7 +246,6 @@ public class Player : CharacterParent
 
 		i = 0;
 		rate = getFallPhys(i);
-		Debug.Log(rate);
 		while(rate >= 0){
 			//Add jump force to our character
 			charBody.AddForce (new Vector2 (0, -rate));
@@ -256,7 +255,6 @@ public class Player : CharacterParent
 
 			//Sub tract from the jump force
 			rate = getJumpPhys(i);
-			Debug.Log(rate);
 
 			i+=.3f;
 

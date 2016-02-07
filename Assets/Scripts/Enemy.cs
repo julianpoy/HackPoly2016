@@ -36,9 +36,9 @@ public class Enemy : CharacterParent
 		base.Start ();
 
 		//Get our sounds
-		attack = GameObject.Find ("Punch").GetComponent<AudioSource> ();
-		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
-		death = GameObject.Find ("Death").GetComponent<AudioSource> ();
+		//attack = GameObject.Find ("Punch").GetComponent<AudioSource> ();
+		//hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
+		//death = GameObject.Find ("Death").GetComponent<AudioSource> ();
 
 		//Set our Health
 		maxHealth = maxHealth / 2;
@@ -57,7 +57,7 @@ public class Enemy : CharacterParent
 		attackFrames = totalFrames;
 
 		//Go after our player!
-		player = GameObject.Find("Player").GetComponent<Player>();
+		player = GameObject.FindGameObjectWithTag("PlayerChar").GetComponent<Player>();
 
 	}
 
@@ -102,7 +102,9 @@ public class Enemy : CharacterParent
 	void enemyMove ()
 	{
 		//Get our angle stuff
-		float h = transform.position.x - player.transform.position.x;
+		float h = gameObject.transform.position.x - player.transform.position.x;
+
+		//Need to make a vector here to move towards
 
 
 		//Get our speed according to our current level
