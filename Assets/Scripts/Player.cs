@@ -225,7 +225,7 @@ public class Player : CharacterParent
 	}
 
 	public float getJumpPhys(float x){
-		return 1.1f * ((-(float)Math.Pow(.22f * x - 9.3f, 2f)) + 100f);
+		return 1.2f * ((-(float)Math.Pow(.22f * x - 9.3f, 2f)) + 100f);
 	}
 
 	//Function for if dodging
