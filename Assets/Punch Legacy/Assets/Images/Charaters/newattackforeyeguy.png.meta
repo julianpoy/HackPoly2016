@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: a548e06fdbe71ee4fa39d85552740b8d
+timeCreated: 1438385733
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: newattackforeyeguy_0
+    21300002: newattackforeyeguy_1
+    21300004: newattackforeyeguy_2
+    21300006: newattackforeyeguy_3
+    21300008: newattackforeyeguy_4
+    21300010: newattackforeyeguy_5
+    21300012: newattackforeyeguy_6
+    21300014: newattackforeyeguy_7
+    21300016: newattackforeyeguy_8
+    21300018: newattackforeyeguy_9
+    21300020: newattackforeyeguy_10
+    21300022: newattackforeyeguy_11
+    21300024: newattackforeyeguy_12
+    21300026: newattackforeyeguy_13
+    21300028: newattackforeyeguy_14
+    21300030: newattackforeyeguy_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: newattackforeyeguy_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 465
+        width: 39
+        height: 64
+      alignment: 9
+      pivot: {x: .55145371, y: .756062508}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_1
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 465
+        width: 36
+        height: 64
+      alignment: 9
+      pivot: {x: .416388184, y: .761288643}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_2
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 453
+        width: 35
+        height: 76
+      alignment: 9
+      pivot: {x: .557333827, y: .790442228}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_3
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 453
+        width: 35
+        height: 76
+      alignment: 9
+      pivot: {x: .452222556, y: .7829566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 358
+        width: 68
+        height: 29
+      alignment: 9
+      pivot: {x: .209816769, y: .465402544}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_5
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 358
+        width: 68
+        height: 29
+      alignment: 9
+      pivot: {x: .214431539, y: .476936072}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_6
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 358
+        width: 64
+        height: 29
+      alignment: 9
+      pivot: {x: .25816837, y: .511533558}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_7
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 358
+        width: 64
+        height: 29
+      alignment: 9
+      pivot: {x: .243937969, y: .48846963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 248
+        width: 68
+        height: 29
+      alignment: 9
+      pivot: {x: .785264969, y: .523066044}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 248
+        width: 68
+        height: 29
+      alignment: 9
+      pivot: {x: .780346572, y: .476935029}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_10
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 248
+        width: 64
+        height: 29
+      alignment: 9
+      pivot: {x: .770693302, y: .481897801}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 248
+        width: 64
+        height: 29
+      alignment: 9
+      pivot: {x: .779437065, y: .490053385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_12
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 129
+        width: 37
+        height: 72
+      alignment: 9
+      pivot: {x: .468815982, y: .207542419}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 129
+        width: 37
+        height: 72
+      alignment: 9
+      pivot: {x: .5311836, y: .227573812}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 129
+        width: 36
+        height: 72
+      alignment: 9
+      pivot: {x: .548074484, y: .199530065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: newattackforeyeguy_15
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 129
+        width: 35
+        height: 72
+      alignment: 9
+      pivot: {x: .516483009, y: .235586375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
