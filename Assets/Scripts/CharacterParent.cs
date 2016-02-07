@@ -157,7 +157,7 @@ public class CharacterParent : MonoBehaviour {
 	{
 		//Boolean for health
 		canRegen = false;
-		yield return new WaitForSeconds(0.75f);
+		yield return new WaitForSeconds(0.45f);
 		canRegen = true;
 	}
 

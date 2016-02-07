@@ -16,11 +16,6 @@ public class Player : CharacterParent
 	//Our Number of jumps we have done
 	int jumps;
 	bool jumping;
-	public int jumpForce;
-
-	bool applyFallPhys;
-	float fallPhysCounter;
-	int physAlt;
 
 	//Counter for holding space to punch
 	private int holdAttack;
@@ -47,10 +42,6 @@ public class Player : CharacterParent
 		jumps = 0;
 		jumping = false;
 		holdAttack = 0;
-
-		applyFallPhys = false;
-		fallPhysCounter = 0;
-		physAlt = 0;
 	}
 
 	// Update is called once per frame
@@ -58,18 +49,6 @@ public class Player : CharacterParent
 	{
 		//Call our base update
 		base.Update ();
-
-		if(applyFallPhys && !jumping && physAlt % 8 == 0){
-
-			charBody.AddForce (new Vector2 (0, -getJumpPhys(fallPhysCounter)));
-
-			//Force some camera Lerp
-			actionCamera.forceLerp(0, 0.0065f);
-
-			fallPhysCounter += 0.3f;
-			if(physAlt == 8) physAlt = 0;
-			physAlt++;
-		}
 
 		//check if dead, allow movement if alive
 		if (curHealth <= 0) {
@@ -139,7 +118,7 @@ public class Player : CharacterParent
 			//Check what direction we are moving, and slight move that way when attacking
 			int dir = animator.GetInteger("Direction");
 			float moveAmount = .005f;
-			
+
 		//Our spawn offset
 		float spawnOffset = 0.0975f;
 			if(dir == 1)
@@ -165,44 +144,43 @@ public class Player : CharacterParent
 	//Function for jumping
 	IEnumerator Jump() {
 
-			//Set our booleans
-			jumping = true;
-			jumps++;
+		//Set our booleans
+		jumping = true;
+		jumps++;
 
-			//Get our jump Rate
+		//Force some camera Lerp
+		actionCamera.forceLerp(0, -0.0065f);
 
 		float i = 0f;
-		float rate = getJumpPhys(i);
+		float rate = 0f;
 
-		while (rate > 0) {
+		if(jumps < 3) {
 
-			//Add jump force to our character
-			charBody.AddForce (new Vector2 (0, rate));
+			while (i <= 88f) {
 
-			//Force some camera Lerp
-			actionCamera.forceLerp(0, -0.0065f);
+				rate = getJumpPhys(i);
 
-			//Sub tract from the jump force
-			rate = getJumpPhys(i);
+				//Add jump force to our character
+				charBody.AddForce (new Vector2 (0, rate));
 
-			//Allow Jumping again a bit early
-			if(rate < 2) jumping = false;
+				//Allow Jumping again a bit early
+				if(i > 65f) jumping = false;
 
-			i+=.3f;
+				i+=3f;
 
-			//Wait some frames
+				//Wait some frames
 				//Wait a frame
 				yield return 0;
 		}
 
 		i = 0;
-		rate = getFallPhys(i);
+		rate = getJumpPhys(i);
 		while(rate >= 0){
 			//Add jump force to our character
 			charBody.AddForce (new Vector2 (0, -rate));
 
 			//Force some camera Lerp
-			actionCamera.forceLerp(0, 0.0065f);
+			actionCamera.forceLerp(0, -0.00065f);
 
 			//Sub tract from the jump force
 			rate = getJumpPhys(i);
@@ -213,19 +191,12 @@ public class Player : CharacterParent
 			//Wait a frame
 			yield return 0;
 
+			}
 		}
 	}
 
 	public float getJumpPhys(float x){
-		float startPos = (x - 1.6f);
-		float dropPos = (x - 2.3f);
-		float dropAmount = (0.6f * (float)Math.Sin(x - 2.3f));
-		float startY = 3.2f;
-		return 70*(-(float)Math.Pow(startPos, 2f) + startY - (float)Math.Abs(dropAmount));
-	}
-
-	public float getFallPhys(float x){
-		return 0.01f * (float)Math.Abs(Math.Pow(x, 2.3f));
+		return 1.2f * ((-(float)Math.Pow(.22f * x - 9.3f, 2f)) + 100f);
 	}
 
 	//Function for if dodging
@@ -237,12 +208,11 @@ public class Player : CharacterParent
 	//Function to check if we can jump again for collisions
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		applyFallPhys = false;
+		//Set Jumps to zero
+		jumps = 0;
 		//Check if it is the player
 		if (collision.gameObject.tag == "JumpWall") {
-			//Set Jumps to zero
-			jumps = 0;
-
+			charBody.gravityScale = 4;
 			actionCamera.impactPause();
 			actionCamera.startShake ();
 		}
@@ -251,9 +221,7 @@ public class Player : CharacterParent
 	//Function to check if we can jump again for collisions
 	void OnCollisionExit2D(Collision2D collision)
 	{
-		applyFallPhys = true;
-		fallPhysCounter = 0.3f;
-		jumping = false;
+		charBody.gravityScale = 7;
 	}
 
 	//Function to check if we can jump again for collisions
