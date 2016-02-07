@@ -16,8 +16,6 @@ public class Player : CharacterParent
 	//Our Number of jumps we have done
 	int jumps;
 	bool jumping;
-	public int jumpForce;
-	public float jumpMult;
 
 	//Counter for holding space to punch
 	private int holdAttack;
@@ -169,7 +167,7 @@ public class Player : CharacterParent
 			//Check what direction we are moving, and slight move that way when attacking
 			int dir = animator.GetInteger("Direction");
 			float moveAmount = .005f;
-			
+
 		//Our spawn offset
 		float spawnOffset = 0.0775f;
 			if(dir == 1)
@@ -205,26 +203,29 @@ public class Player : CharacterParent
 		float i = 0f;
 		float rate = 0f;
 
-		while (i <= 88f) {
+		if(jumps < 3){
 
-			rate = getJumpPhys(i);
+			while (i <= 88f) {
 
-			//Add jump force to our character
-			charBody.AddForce (new Vector2 (0, rate));
+				rate = getJumpPhys(i);
 
-			//Allow Jumping again a bit early
-			if(i > 65f) jumping = false;
+				//Add jump force to our character
+				charBody.AddForce (new Vector2 (0, rate));
 
-			i+=3f;
+				//Allow Jumping again a bit early
+				if(i > 65f) jumping = false;
 
-			//Wait some frames
-			//Wait a frame
-			yield return 0;
+				i+=3f;
+
+				//Wait some frames
+				//Wait a frame
+				yield return 0;
+			}
 		}
 	}
 
 	public float getJumpPhys(float x){
-		return 1.3f * (-(float)Math.Pow(.22f * x - 9.3f, 2f)) + 100f;
+		return 1.1f * ((-(float)Math.Pow(.22f * x - 9.3f, 2f)) + 100f);
 	}
 
 	//Function for if dodging
@@ -236,14 +237,20 @@ public class Player : CharacterParent
 	//Function to check if we can jump again for collisions
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+		//Set Jumps to zero
+		jumps = 0;
 		//Check if it is the player
 		if (collision.gameObject.tag == "JumpWall") {
-			//Set Jumps to zero
-			jumps = 0;
-
+			charBody.gravityScale = 4;
 			actionCamera.impactPause();
 			actionCamera.startShake ();
 		}
+	}
+
+	//Function to check if we can jump again for collisions
+	void OnCollisionExit2D(Collision2D collision)
+	{
+		charBody.gravityScale = 7;
 	}
 
 	//Function to check if we can jump again for collisions
