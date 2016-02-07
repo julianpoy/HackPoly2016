@@ -5,7 +5,6 @@ public class Player : CharacterParent
 {
 
 	//Our sounds 
-	private AudioSource shoot;
 	private AudioSource jump;
 	private AudioSource hurt;
 	private AudioSource death;
@@ -30,7 +29,6 @@ public class Player : CharacterParent
 		base.Start();
 		
 		//Get our sounds
-		shoot = GameObject.Find ("Dodge").GetComponent<AudioSource> ();
 		jump = GameObject.Find ("LevelUp").GetComponent<AudioSource> ();
 		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
 		death = GameObject.Find ("Death").GetComponent<AudioSource> ();
@@ -194,7 +192,8 @@ public class Player : CharacterParent
 			//Set Jumps to zero
 			jumps = 0;
 
-			actionCamera.impactPause ();
+			actionCamera.impactPause();
+			actionCamera.startShake ();
 		}
 	}
 
