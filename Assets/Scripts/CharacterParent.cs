@@ -25,7 +25,7 @@ public class CharacterParent : MonoBehaviour {
 	public GameManager gameManager;
 
 	//our camera Script
-	public ActionCamera actionCamera;
+	protected ActionCamera actionCamera;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -159,6 +159,11 @@ public class CharacterParent : MonoBehaviour {
 		Color damage = new Color (1, healthPercent, healthPercent);
 		render.material.color = damage;
 
+	}
+
+	//Function to return our current direction
+	public int getDirection() {
+		return animator.GetInteger("Direction");
 	}
 
 }
