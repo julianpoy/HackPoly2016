@@ -34,7 +34,7 @@ public class Bullets : MonoBehaviour {
 		bullBody = GetComponent<Rigidbody2D>();
 
 		//Set our bullet strength and speed
-		strength = 2;
+		strength = 4;
 		speed = 40;
 
 		//Go after our player!
@@ -51,7 +51,9 @@ public class Bullets : MonoBehaviour {
 		}
 
 		//Play our shooting sound
-		//shoot = GameObject.Find ("Dodge").GetComponent<AudioSource> ();
+		shoot = GameObject.Find ("Shoot").GetComponent<AudioSource> ();
+
+			shoot.Play ();
 
 		//Get our camera script
 		actionCamera = Camera.main.GetComponent<ActionCamera>();

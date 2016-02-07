@@ -7,7 +7,6 @@ public class Enemy : CharacterParent
 	//Our sounds
 	private AudioSource attack;
 	private AudioSource hurt;
-	private AudioSource death;
 
 	//Our target to fight
 	private Player player;
@@ -33,9 +32,8 @@ public class Enemy : CharacterParent
 		base.Start ();
 
 		//Get our sounds
-		//attack = GameObject.Find ("Punch").GetComponent<AudioSource> ();
-		//hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
-		//death = GameObject.Find ("Death").GetComponent<AudioSource> ();
+		attack = GameObject.Find ("eAttack").GetComponent<AudioSource> ();
+		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
 
 		//Set our Health
 		maxHealth = maxHealth / 2;
@@ -69,7 +67,7 @@ public class Enemy : CharacterParent
 		if(!gameManager.getGameStatus() && !dead && !playerCollide)
 		{
 			//Check how far we are
-			if(Vector3.Distance(gameObject.transform.position, player.transform.position) < 2) {
+			if(Vector3.Distance(gameObject.transform.position, player.transform.position) < 1.75) {
 
 				//Move our enemy
 				enemyMove ();
@@ -97,6 +95,8 @@ public class Enemy : CharacterParent
 
 				//Set death boolean to true
 				dead = true;
+
+			//Destroy (gameObject);
 
 		}
 
@@ -173,7 +173,8 @@ public class Enemy : CharacterParent
 
 						//Play the sound of hurt, only if the game is still on
 						if (!gameManager.getGameStatus ()) {
-							//hurt.Play ();
+					attack.Play ();
+					hurt.Play ();
 						}
 
 						//Shake the screen

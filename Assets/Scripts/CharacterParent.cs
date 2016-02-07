@@ -28,6 +28,9 @@ public class CharacterParent : MonoBehaviour {
 	//our camera Script
 	protected ActionCamera actionCamera;
 
+	//Hurt Sound
+	private AudioSource hurt;
+
 	//Our last animation direction for idling
 	protected int lastDir;
 
@@ -58,6 +61,8 @@ public class CharacterParent : MonoBehaviour {
 
 		//Get our camera script
 		actionCamera = Camera.main.GetComponent<ActionCamera>();
+
+		hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame

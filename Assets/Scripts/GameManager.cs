@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour {
 
 	//Our background music
 	private AudioSource bgFight;
+	//Our background music
+	private AudioSource deathSound;
+	private bool deathPlayed;
 
 	//Array pf things to say once you die
 	String[] epitaph = {"Awwee Nuts!"};
@@ -59,7 +62,9 @@ public class GameManager : MonoBehaviour {
 			hud = GameObject.FindGameObjectWithTag ("PlayerHUD").GetComponent<UnityEngine.UI.Text> ();
 
 			//get our bg music
-			//bgFight = GameObject.Find ("GameSong").GetComponent<AudioSource> ();
+			bgFight = GameObject.Find ("BgSong").GetComponent<AudioSource> ();
+			deathSound = GameObject.Find ("Death").GetComponent<AudioSource> ();
+		deathPlayed = false;
 
 			//Defeated enemies is one for score calculation at start
 			defeatedEnemies = 0;
@@ -96,11 +101,11 @@ public class GameManager : MonoBehaviour {
 						//hud.text = ("Health: " + user.getHealth () + "\tScore: " + score);
 
 						//start the music! if it is not playing
-						// if(!bgFight.isPlaying)
-						// {
-						// 	bgFight.Play();
-						// 	bgFight.loop = true;
-						// }
+						 if(!bgFight.isPlaying)
+						 {
+						 	bgFight.Play();
+						 	bgFight.loop = true;
+						 }
 					}
 					else
 					{
@@ -126,8 +131,14 @@ public class GameManager : MonoBehaviour {
 							bgFight.Stop();
 						}
 
+			if (!deathPlayed) {
+				//Play the Death Sounds
+				deathSound.Play();
+				deathPlayed = true;
+			}
+
 						//Slow down the game Time
-						Time.timeScale = 0.25f;
+						Time.timeScale = 0.45f;
 					}
 
 

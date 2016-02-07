@@ -6,10 +6,7 @@ public class Player : CharacterParent
 {
 
 	//Our sounds
-	private AudioSource shoot;
 	private AudioSource jump;
-	private AudioSource hurt;
-	private AudioSource death;
 
 	//Boolean to check if attacking
 	bool shooting;
@@ -33,9 +30,7 @@ public class Player : CharacterParent
 		base.Start();
 
 		//Get our sounds
-		//jump = GameObject.Find ("LevelUp").GetComponent<AudioSource> ();
-		//hurt = GameObject.Find ("Hurt").GetComponent<AudioSource> ();
-		//death = GameObject.Find ("Death").GetComponent<AudioSource> ();
+		jump = GameObject.Find ("Jump").GetComponent<AudioSource> ();
 
 		//Set our actions
 		shooting = false;
@@ -100,6 +95,8 @@ public class Player : CharacterParent
 			if(Input.GetKeyDown(KeyCode.Space) && !shooting
 				&& !jumping && jumps < 2 &&
 				!gameManager.getGameStatus()) {
+
+				jump.Play ();
 
 					//Jump Coroutine
 					StopCoroutine ("Jump");
