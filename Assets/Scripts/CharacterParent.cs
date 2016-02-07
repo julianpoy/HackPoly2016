@@ -14,6 +14,7 @@ public class CharacterParent : MonoBehaviour {
 	protected int curHealth;
 	//Player health regen rate
 	public int healthRegenRate;
+	private bool canRegen;
 
 	//Game jucin', slow when attacking
 	private int moveDec;
@@ -43,6 +44,7 @@ public class CharacterParent : MonoBehaviour {
 
 		//Set our health
 		curHealth = maxHealth;
+		canRegen = true;
 
 		//Default looking idle
 		animator.SetInteger("Direction", 0);
@@ -56,6 +58,22 @@ public class CharacterParent : MonoBehaviour {
 
 	// Update is called once per frame
 	protected virtual void Update () {
+
+		//Check if we can Regen
+		if(canRegen && !gameManager.getGameStatus()) {
+
+			//increase health by 7 points
+			if (curHealth + 7 > maxHealth) {
+				setHealth(maxHealth);
+			} else {
+				setHealth(curHealth + 7);
+			}
+
+			//Stop regen
+			StopCoroutine("noRegen");
+			StartCoroutine("noRegen");
+
+		}
 	}
 
 
@@ -134,6 +152,15 @@ public class CharacterParent : MonoBehaviour {
 		moveDec = 1;
 	}
 
+	//Function to notHealth Regen for a certain amount of time
+	IEnumerator noRegen()
+	{
+		//Boolean for health
+		canRegen = false;
+		yield return new WaitForSeconds(1.5f);
+		canRegen = true;
+	}
+
 	//Get/set funtion for health
 	public int getHealth()
 	{
@@ -147,7 +174,11 @@ public class CharacterParent : MonoBehaviour {
 		if (curHealth > 0)
 		{
 			//Set the character damage indicator
-			//editDamage();
+			editDamage();
+
+			//Stop regen
+			StopCoroutine("noRegen");
+			StartCoroutine("noRegen");
 		}
 	}
 
@@ -155,7 +186,9 @@ public class CharacterParent : MonoBehaviour {
 	public void editDamage()
 	{
 		//Create our red color indicator
-		float healthPercent = (curHealth / maxHealth);
+		float curFloat = curHealth * 1.0f;
+		float maxFloat = maxHealth * 1.0f;
+		float healthPercent = curFloat / maxFloat;
 		Color damage = new Color (1.0f, healthPercent, healthPercent);
 		render.material.color = damage;
 

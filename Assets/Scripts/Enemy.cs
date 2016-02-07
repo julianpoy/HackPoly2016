@@ -137,7 +137,7 @@ public class Enemy : CharacterParent
 		void OnCollisionStay2D(Collision2D collision)
 		{
 				//Check if it is the player
-				if (collision.gameObject.tag == "Player") {
+				if (collision.gameObject.tag == "PlayerChar") {
 				//Set player collide to true
 				playerCollide = true;
 
@@ -152,7 +152,7 @@ public class Enemy : CharacterParent
 				else {
 
 					//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
-					animator.SetTrigger ("Attack");
+					//animator.SetTrigger ("Attack");
 
 					//Only do damage if they are not dodging
 						//Get the player
@@ -169,7 +169,7 @@ public class Enemy : CharacterParent
 
 						//Play the sound of hurt, only if the game is still on
 						if (!gameManager.getGameStatus ()) {
-							hurt.Play ();
+							//hurt.Play ();
 						}
 
 						//Shake the screen

@@ -80,12 +80,12 @@ public class Player : CharacterParent
 			//No longer turning invisible, just looping death animation
 			//play our death animation
 			if (!animator.GetBool ("Death")) {
-				animator.SetTrigger ("DeathTrigger");
+				animator.SetTrigger ("Death");
 				animator.SetBool ("Death", true);
 				//play the death sound
-				if (!death.isPlaying) {
-					death.Play ();
-				}
+				//if (!death.isPlaying) {
+					//death.Play ();
+				//}
 			}
 
 			//Set our gameover text
@@ -96,12 +96,13 @@ public class Player : CharacterParent
 		} else {
 
 			//Call moving
-			base.Move(Input.GetAxis("Horizontal"), shooting);
+			if(!gameManager.getGameStatus()) base.Move(Input.GetAxis("Horizontal"), shooting);
 
 			//Attacks with our player (Check for a level up here as well), only attack if not jumping
 			if (Input.GetKey (KeyCode.Backspace) &&
 				!jumping &&
-				animator.GetInteger("Direction") != 0) {
+				animator.GetInteger("Direction") != 0 &&
+				!gameManager.getGameStatus()) {
 				//Now since we are allowing holding space to punch we gotta count for it
 				if(!shooting && holdAttack % holdDuration == 0)
 				{
@@ -116,61 +117,14 @@ public class Player : CharacterParent
 				holdAttack++;
 			}
 
-
-
-			//Shoot!
-			if (Input.GetKeyUp (KeyCode.RightShift)) {
-
-				if (!shooting && holdAttack % holdDuration == 0) {
-
-					//Set hold punch to zero
-					holdAttack = 0;
-
-					//Shoot
-					StopCoroutine("Shoot");
-					StartCoroutine ("Shoot");
-
-				}
-
-				//increare hold attack
-				holdAttack++;
-			}
-
 			//Jumping INput, cant jump if attacking
 			if(Input.GetKeyDown(KeyCode.Space) && !shooting
-				&& !jumping && jumps < 2) {
+				&& !jumping && jumps < 2 &&
+				!gameManager.getGameStatus()) {
 
 					//Jump Coroutine
 					StopCoroutine ("Jump");
 					StartCoroutine ("Jump");
-			}
-
-			//Now check if we are attacking for health regen
-			if(!gameManager.getGameStatus())
-			{
-				//increase health by .5%
-				int hpUp = (int)((maxHealth + healthRegenRate) * .05);
-
-				//Check if it is less than one
-				if(hpUp < 1)
-				{
-					hpUp = 1;
-				}
-
-				//We don't want to exceed our maximum health
-				if(hpUp + curHealth > maxHealth)
-				{
-					//health is equal to full health
-					curHealth = maxHealth;
-				}
-				else
-				{
-					//INcrease the health!
-					curHealth = curHealth + hpUp;
-				}
-
-				//Set the character damage indicator
-				editDamage();
 			}
 
 		}
@@ -190,7 +144,7 @@ public class Player : CharacterParent
 			float moveAmount = .005f;
 			
 		//Our spawn offset
-		float spawnOffset = 0.0775f;
+		float spawnOffset = 0.0975f;
 			if(dir == 1)
 			{
 				gameObject.transform.position = new Vector3(gameObject.transform.position.x + moveAmount, gameObject.transform.position.y, 0);
